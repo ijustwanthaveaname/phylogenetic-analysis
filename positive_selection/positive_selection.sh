@@ -66,17 +66,17 @@ echo "*seqfile = paml  * sequence data file name
    Small_Diff = .45e-6
     cleandata = 1  * remove sites with ambiguity data (1:yes, 0:no)?
   fix_blength = 0  * 0: ignore, -1: random, 1: initial, 2: fixed, 3: proportiona" > branch-site_null.ctl
-ls *.fasta|while read id
-do
+#ls *.fasta|while read id
+#do
 #TransDecoder.LongOrfs -t ${id}
 #TransDecoder.Predict -t ${id}
-t_coffee -other_pg seq_reformat -in ${id} -action +translate -output fasta_seq > protein_${id}
-mafft protein_${id} > aln_protein_${id}
-trimal -automated1 -in aln_protein_${id} -out protein_trim_${id}
-pal2nal.pl protein_trim_${id} ${id} -output paml > ${id%.fasta}.paml
-iqtree -s protein_trim_HBB.fasta -m MFP
+#t_coffee -other_pg seq_reformat -in ${id} -action +translate -output fasta_seq > protein_${id}
+#mafft protein_${id} > aln_protein_${id}
+#trimal -automated1 -in aln_protein_${id} -out protein_trim_${id}
+#pal2nal.pl protein_trim_${id} ${id} -output paml > ${id%.fasta}.paml
+#iqtree -s protein_trim_HBB.fasta -m MFP
 #进行支位点模型
-done
+#done
 ls *.paml|while read id
 do 
 	cat branch-site.ctl > ${id%.paml}.ctl
